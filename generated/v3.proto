@@ -1,0 +1,216 @@
+syntax = "proto3";
+
+package bankapplication;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message GetTransactionsRequest {
+    // not required!
+    double offset = 1;
+}
+
+message GetsSearchBillsRequest {
+    double accountBill = 1;
+}
+
+message IsAccountBillRequest {
+    double accountBill = 1;
+}
+
+message IsAmountMoneyRequest {
+    double amountMoney = 1;
+}
+
+message IsEmailRequest {
+    string email = 1;
+}
+
+message IsLoginRequest {
+    int32 login = 1;
+}
+
+message KeyRequest {
+    double id = 1;
+}
+
+message ReturnsnotificationsRequest {
+    double limit = 1;
+}
+
+service BankApplicationService {
+    // Confirm a transaction
+    rpc Confirm(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/transactions/confirm"
+        };
+    }
+
+    // Create a transaction
+    rpc Create(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/transactions/create"
+        };
+    }
+
+    // Returns user's as recipient transactions
+    rpc GetRTransactions(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/transactions/recipient"
+        };
+    }
+
+    // Returns user's as sender transactions
+    rpc GetSTransactions(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/transactions/sender"
+        };
+    }
+
+    // Returns user's transactions
+    rpc GetTransactions(GetTransactionsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/transactions/{offset}"
+        };
+    }
+
+    // Returns user's messages
+    rpc Getmess(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/additionals/messages/{language}"
+        };
+    }
+
+    // Returns user's bills data
+    rpc GetsBills(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/bills"
+        };
+    }
+
+    // Returns all of users account bills
+    rpc GetsSearchBills(GetsSearchBillsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/bills/{accountBill}/search"
+        };
+    }
+
+    // Returns user's data
+    rpc GetsUser(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/users"
+        };
+    }
+
+    // Returns boolean that account bill exist
+    rpc IsAccountBill(IsAccountBillRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/bills/{accountBill}/isAccountBill"
+        };
+    }
+
+    // Returns boolean that User has enough exist available funds
+    rpc IsAmountMoney(IsAmountMoneyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/bills/{amountMoney}/isAmountMoney"
+        };
+    }
+
+    // Returns boolean that email exist
+    rpc IsEmail(IsEmailRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/users/{email}/isEmail"
+        };
+    }
+
+    // Returns boolean that login exist
+    rpc IsLogin(IsLoginRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/users/{login}/isLogin"
+        };
+    }
+
+    // Returns boolean that user has new message
+    rpc IsMessage(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/additionals/messages/isMessage"
+        };
+    }
+
+    // Returns boolean that user has new notifications
+    rpc IsNotification(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/additionals/notifications/isNotification"
+        };
+    }
+
+    // Returns user's as recipient transactions
+    rpc Key(KeyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/transactions/{id}/key"
+        };
+    }
+
+    // Login user
+    rpc Login(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/auth/login"
+        };
+    }
+
+    // Logout user
+    rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/auth/logout"
+        };
+    }
+
+    // Returns all currencies data
+    rpc RCurrency(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/currency"
+        };
+    }
+
+    // Create user
+    rpc Register(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/auth/register"
+        };
+    }
+
+    // Returns user's notifications
+    rpc Returnsnotifications(ReturnsnotificationsRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            get: "/api/additionals/notifications/{limit}"
+        };
+    }
+
+    // Updates all currencies data
+    rpc SCurrency(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/api/currency"
+        };
+    }
+
+    // Updates user's data
+    rpc SetsUser(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            patch: "/api/users"
+        };
+    }
+
+    // Unsets user's messages
+    rpc Unsetmess(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/additionals/messages"
+        };
+    }
+
+    // Unsets user's notifications
+    rpc Unsetnoti(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/api/additionals/notifications"
+        };
+    }
+}
