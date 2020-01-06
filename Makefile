@@ -4,10 +4,10 @@ SHELL := bash
 gen:  ## Generate artifacts.
 gen: generated/schema.sql
 	@echo "==> Generating artifacts."
-	mkdir -p ./generated
 
 generated/schema.sql:
 	@echo "==> Generating MySQL schema."
+	mkdir -p ./generated
 	source backend/.env \
 		&& pushd backend \
 		&& docker-compose exec db mysqldump \
