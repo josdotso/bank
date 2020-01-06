@@ -1,0 +1,834 @@
+components:
+  schemas:
+    ConfirmTransaction:
+      properties:
+        accountBill:
+          format: int64
+          type: integer
+        amountMoney:
+          type: number
+        authorizationKey:
+          type: string
+        transferTitle:
+          type: string
+      type: object
+    CreateTransaction:
+      properties:
+        accountBill:
+          format: int64
+          type: integer
+        amountMoney:
+          type: number
+        locale:
+          type: string
+        transferTitle:
+          type: string
+      type: object
+    Login:
+      properties:
+        login:
+          format: int32
+          type: integer
+        password:
+          type: string
+      type: object
+    Messages:
+      properties:
+        messages:
+          items:
+            properties:
+              message_createdDate:
+                format: date-time
+                type: string
+              template_actions:
+                type: string
+              template_content:
+                type: string
+              template_subject:
+                type: string
+              user_name:
+                type: string
+              user_surname:
+                type: string
+            type: object
+          type: array
+        success:
+          type: boolean
+      type: object
+    Register:
+      properties:
+        currencyId:
+          format: int32
+          type: integer
+        email:
+          type: string
+        login:
+          format: int32
+          type: integer
+        name:
+          type: string
+        password:
+          type: string
+        surname:
+          type: string
+      type: object
+    SearchBills:
+      properties:
+        bills:
+          items:
+            properties:
+              bill_accountBill:
+                type: string
+              user_id:
+                format: int32
+                type: integer
+              user_name:
+                type: string
+              user_surname:
+                type: string
+            type: object
+          type: array
+      type: object
+    UpdateUser:
+      properties:
+        currencyId:
+          format: int64
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        surname:
+          type: string
+      type: object
+    getBillsdata:
+      properties:
+        accountBill:
+          type: string
+        additionals:
+          properties:
+            accountBalanceHistory:
+              type: string
+            incomingTransfersSum:
+              type: string
+            outgoingTransfersSum:
+              type: string
+          type: object
+        availableFunds:
+          type: string
+        currency:
+          properties:
+            id:
+              format: int32
+              type: integer
+            name:
+              type: string
+          type: object
+      type: object
+    getCurrency:
+      properties:
+        currency:
+          items:
+            properties:
+              exchangeRate:
+                type: number
+              exchangeRateSyncDate:
+                format: date-time
+                type: string
+              id:
+                format: int64
+                type: integer
+              main:
+                type: boolean
+              name:
+                type: string
+            type: object
+          type: array
+      type: object
+    getNotifications:
+      properties:
+        notifications:
+          items:
+            properties:
+              currency_name:
+                type: string
+              transaction_amountMoney:
+                type: string
+              transaction_createdDate:
+                format: date-time
+                type: string
+              user_name:
+                type: string
+              user_surname:
+                type: string
+            type: object
+          type: array
+        success:
+          type: boolean
+      type: object
+    getRecipientTransactions:
+      properties:
+        recipientTransactions:
+          items:
+            properties:
+              currency_name:
+                type: string
+              transaction_amountMoney:
+                type: string
+              transaction_createdDate:
+                format: date-time
+                type: string
+              transaction_transferTitle:
+                type: string
+              user_id:
+                format: int64
+                type: integer
+              user_name:
+                type: string
+              user_surname:
+                type: string
+            type: object
+          type: array
+      type: object
+    getSenderTransactions:
+      properties:
+        senderTransactions:
+          items:
+            properties:
+              currency_name:
+                type: string
+              transaction_amountMoney:
+                type: string
+              transaction_createdDate:
+                format: date-time
+                type: string
+              transaction_transferTitle:
+                type: string
+              user_id:
+                format: int64
+                type: integer
+              user_name:
+                type: string
+              user_surname:
+                type: string
+            type: object
+          type: array
+      type: object
+    getTransactionKey:
+      properties:
+        authorizationKey:
+          type: string
+        success:
+          type: boolean
+      type: object
+    getTransactions:
+      properties:
+        count:
+          format: int64
+          type: integer
+        transactions:
+          items:
+            items:
+              properties:
+                amountMoney:
+                  type: string
+                createdDate:
+                  format: date-time
+                  type: string
+                currency:
+                  properties:
+                    id:
+                      format: int64
+                      type: integer
+                    name:
+                      type: string
+                  type: object
+                recipient:
+                  properties:
+                    accountBill:
+                      type: string
+                    user:
+                      properties:
+                        id:
+                          format: int64
+                          type: integer
+                        name:
+                          type: string
+                        surname:
+                          type: string
+                      type: object
+                  type: object
+                sender:
+                  properties:
+                    accountBill:
+                      type: string
+                    user:
+                      properties:
+                        id:
+                          format: int64
+                          type: integer
+                        name:
+                          type: string
+                        surname:
+                          type: string
+                      type: object
+                  type: object
+                transferTitle:
+                  type: string
+              type: object
+            type: array
+          type: array
+      type: object
+    getUserdata:
+      properties:
+        email:
+          type: string
+        lastFailedLoggedDate:
+          format: date-time
+          type: string
+        lastPresentLoggedDate:
+          format: date-time
+          type: string
+        lastSuccessfulLoggedDate:
+          format: date-time
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+      type: object
+    isAccountBill:
+      properties:
+        isAccountBill:
+          type: boolean
+        recipientId:
+          format: int64
+          type: integer
+        recipientName:
+          type: string
+        recipientSurname:
+          type: string
+      type: object
+    isAmountMoney:
+      properties:
+        isAmountMoney:
+          type: boolean
+      type: object
+    isEmail:
+      properties:
+        isEmail:
+          type: boolean
+      type: object
+    isLogin:
+      properties:
+        isLogin:
+          type: boolean
+      type: object
+    isMessage:
+      properties:
+        isMessage:
+          type: boolean
+        messageCount:
+          format: int64
+          type: integer
+      type: object
+    isNotification:
+      properties:
+        isNotification:
+          type: boolean
+        notificationCount:
+          format: int64
+          type: integer
+      type: object
+    setCurrency:
+      properties:
+        exchangeRate:
+          type: number
+        exchangeRateSyncDate:
+          format: date-time
+          type: string
+        name:
+          type: string
+      type: object
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+    bearerAuth:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: GitHub repository
+  url: 'https://github.com/pietrzakadrian/bank'
+info:
+  contact:
+    email: contact@pietrzakadrian.com
+  title: Bank Application
+  version: 1.1.0
+openapi: 3.0.0
+paths:
+  /api/additionals/messages:
+    put:
+      description: ''
+      operationId: unsetmess
+      responses:
+        '200':
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Unsets user's messages
+      tags:
+        - Additionals
+  /api/additionals/messages/isMessage:
+    get:
+      description: ''
+      operationId: isMessage
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isMessage'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns boolean that user has new message
+      tags:
+        - Additionals
+  '/api/additionals/messages/{language}':
+    get:
+      description: ''
+      operationId: getmess
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Messages'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's messages
+      tags:
+        - Additionals
+  /api/additionals/notifications:
+    put:
+      description: ''
+      operationId: unsetnoti
+      responses:
+        '200':
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Unsets user's notifications
+      tags:
+        - Additionals
+  /api/additionals/notifications/isNotification:
+    get:
+      description: ''
+      operationId: isNotification
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isNotification'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns boolean that user has new notifications
+      tags:
+        - Additionals
+  '/api/additionals/notifications/{limit}':
+    get:
+      description: ''
+      operationId: returnsnotifications
+      parameters:
+        - description: ''
+          in: path
+          name: limit
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getNotifications'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's notifications
+      tags:
+        - Additionals
+  /api/auth/login:
+    post:
+      description: ''
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        '200':
+          description: successful operation
+      summary: Login user
+      tags:
+        - Auth
+  /api/auth/logout:
+    put:
+      description: ''
+      operationId: logout
+      responses:
+        '200':
+          description: successful operation
+      security:
+        - bearerAuth: []
+      summary: Logout user
+      tags:
+        - Auth
+  /api/auth/register:
+    post:
+      description: ''
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+        description: Created user object
+        required: true
+      responses:
+        '200':
+          description: successful operation
+      summary: Create user
+      tags:
+        - Auth
+  /api/bills:
+    get:
+      description: ''
+      operationId: getsBills
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getBillsdata'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's bills data
+      tags:
+        - Bills
+  '/api/bills/{accountBill}/isAccountBill':
+    get:
+      description: ''
+      operationId: isAccountBill
+      parameters:
+        - description: ''
+          in: path
+          name: accountBill
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isAccountBill'
+          description: boolean
+      security:
+        - bearerAuth: []
+      summary: Returns boolean that account bill exist
+      tags:
+        - Bills
+  '/api/bills/{accountBill}/search':
+    get:
+      description: ''
+      operationId: getsSearchBills
+      parameters:
+        - description: ''
+          in: path
+          name: accountBill
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBills'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns all of users account bills
+      tags:
+        - Bills
+  '/api/bills/{amountMoney}/isAmountMoney':
+    get:
+      description: ''
+      operationId: isAmountMoney
+      parameters:
+        - description: ''
+          in: path
+          name: amountMoney
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isAmountMoney'
+          description: boolean
+      security:
+        - bearerAuth: []
+      summary: Returns boolean that User has enough exist available funds
+      tags:
+        - Bills
+  /api/currency:
+    get:
+      description: ''
+      operationId: rCurrency
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getCurrency'
+          description: Successful
+      summary: Returns all currencies data
+      tags:
+        - Currency
+    patch:
+      description: ''
+      operationId: sCurrency
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setCurrency'
+        required: true
+      responses:
+        '200':
+          description: Successful
+      security:
+        - basicAuth: []
+      summary: Updates all currencies data
+      tags:
+        - Currency
+  /api/transactions/confirm:
+    post:
+      description: ''
+      operationId: confirm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmTransaction'
+        required: true
+      responses:
+        '200':
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Confirm a transaction
+      tags:
+        - Transactions
+  /api/transactions/create:
+    post:
+      description: ''
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransaction'
+        required: true
+      responses:
+        '200':
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Create a transaction
+      tags:
+        - Transactions
+  /api/transactions/recipient:
+    get:
+      description: ''
+      operationId: getRTransactions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getRecipientTransactions'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's as recipient transactions
+      tags:
+        - Transactions
+  /api/transactions/sender:
+    get:
+      description: ''
+      operationId: getSTransactions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSenderTransactions'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's as sender transactions
+      tags:
+        - Transactions
+  '/api/transactions/{id}/key':
+    get:
+      description: ''
+      operationId: key
+      parameters:
+        - description: ''
+          in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTransactionKey'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's as recipient transactions
+      tags:
+        - Transactions
+  '/api/transactions/{offset}':
+    get:
+      description: ''
+      operationId: getTransactions
+      parameters:
+        - description: not required!
+          in: path
+          name: offset
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getTransactions'
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Returns user's transactions
+      tags:
+        - Transactions
+  /api/users:
+    get:
+      description: ''
+      operationId: getsUser
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getUserdata'
+          description: successful operation
+      security:
+        - bearerAuth: []
+      summary: Returns user's data
+      tags:
+        - Users
+    patch:
+      description: ''
+      operationId: setsUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+        required: true
+      responses:
+        '200':
+          description: Successful
+      security:
+        - bearerAuth: []
+      summary: Updates user's data
+      tags:
+        - Users
+  '/api/users/{email}/isEmail':
+    get:
+      description: ''
+      operationId: isEmail
+      parameters:
+        - description: ''
+          in: path
+          name: email
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isEmail'
+          description: boolean
+      summary: Returns boolean that email exist
+      tags:
+        - Users
+  '/api/users/{login}/isLogin':
+    get:
+      description: ''
+      operationId: isLogin
+      parameters:
+        - description: ''
+          in: path
+          name: login
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isLogin'
+          description: boolean
+      summary: Returns boolean that login exist
+      tags:
+        - Users
+servers:
+  - url: 'https://bank.pietrzakadrian.com/'
+  - url: 'http://bank.pietrzakadrian.com/'
+tags:
+  - description: User Authorization
+    name: Auth
+  - description: User data
+    name: Users
+  - description: Bills data
+    name: Bills
+  - description: Transactions data
+    name: Transactions
+  - description: Additionals data
+    name: Additionals
+  - description: Currency data
+    name: Currency
+
