@@ -4,17 +4,28 @@ SHELL := bash
 deps:  ## Install dependencies.
 	@echo "==> Installing dependencies."
 	npm install -g api-spec-converter
+	go get -u github.com/NYTimes/openapi2proto/cmd/openapi2proto
 
 .PHONY: gen
 gen:  ## Generate artifacts.
-gen: generated/openapi-v3.yaml
+gen: generated/openapi3.yaml
+gen: generated/v3.proto
 gen: generated/schema.sql
 	@echo "==> Generating artifacts."
 
-generated/openapi-v3.yaml:
+generated/openapi3.yaml:  ## Generate OpenAPI v3 specification.
+	@echo "==> Generating OpenAPI v3 specification."
 	mkdir -p generated
 	api-spec-converter --from=swagger_2 --to=openapi_3 --syntax=yaml --order=alpha \
 		backend/src/utils/swagger/swagger.json \
+	| dos2unix \
+	| tee $@
+
+generated/v3.proto:  ## Generate Protocol Buffers v3 specification.
+	@echo "==> Generating Protocol Buffers v3 specification."
+	mkdir -p generated
+	openapi2proto -spec generated/openapi3.yaml -annotate \
+	| dos2unix \
 	| tee $@
 
 generated/schema.sql:  ## Generate MySQL schema.
