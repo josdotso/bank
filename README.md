@@ -69,7 +69,7 @@ for **Frontend**:
 for **Backend**:
 
 1. Clone this repository and enter the `backend` directory
-2. Create 2 MySQL databases. (One for testing & other as main database)
+2. Create 2 MySQL databases (`bank`, `bank_test`) with `utf8_unicode_ci` collation. (One for testing & other as main database)
 3. Copy the `env.example` and create a new `.env` file from it.
 4. Set the configuration parameters there (App port, app host, database host, port, username, password etc)
 5. Install the dependencies by running `yarn`
