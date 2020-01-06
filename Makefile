@@ -22,8 +22,10 @@ generated/schema.sql:  ## Generate MySQL schema.
 	mkdir -p generated
 	source backend/.env \
 		&& pushd backend \
-		&& docker-compose exec db mysqldump \
-		     -u$${DB_USERNAME} -p$${DB_PASSWORD} \
+		&& docker-compose exec db /bin/bash -c "MYSQL_PWD=$${DB_PASSWORD} mysqldump \
+		     -u$${DB_USERNAME} \
                      --protocol=tcp -h$${DB_HOST} -P$${DB_PORT} \
-                     --no-data $${DB_NAME} \
+                     --no-data $${DB_NAME}" \
+		| dos2unix \
+		| grep -v '^-- Dump completed' \
 		| tee ../generated/schema.sql
